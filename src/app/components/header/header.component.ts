@@ -1,12 +1,13 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LucideAngularModule, Menu, X } from 'lucide-angular';
 import { Router } from '@angular/router';
+import { LucideAngularModule, Menu, X } from 'lucide-angular';
+import { DarkModeToggleComponent } from '../dark-mode-toggle/dark-mode-toggle.component';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, LucideAngularModule],
+  imports: [CommonModule, LucideAngularModule, DarkModeToggleComponent],
   templateUrl: './header.component.html',
   styles: [],
 })
@@ -17,8 +18,6 @@ export class HeaderComponent {
   @Input() logoSrc = 'assets/logoTS.png';
   @Input() logoAlt = 'LogoTechSolutions';
   @Input() size: 'sm' | 'md' | 'lg' = 'md';
-  @Input() isMobile = false;
-  @Output() loginClick = new EventEmitter<void>();
 
   constructor(private router: Router) {}
 
@@ -27,9 +26,9 @@ export class HeaderComponent {
   }
 
   handleLogin() {
-    console.log('Login clicked');
     this.router.navigate(['login']);
   }
+
   handleHome() {
     this.router.navigate(['']);
   }
@@ -41,9 +40,5 @@ export class HeaderComponent {
       lg: 'h-16',
     };
     return sizes[this.size];
-  }
-
-  onLoginClick() {
-    this.loginClick.emit();
   }
 }

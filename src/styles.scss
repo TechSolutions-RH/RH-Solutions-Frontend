@@ -1,1 +1,21 @@
 @import "tailwindcss";
+
+/* Habilitar dark mode manualmente via classe .dark no <html> */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Garantir que o body mude de cor */
+body {
+  @apply bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors;
+}
+
+/* Header específico para garantir */
+header {
+  @apply bg-white dark:bg-gray-900 border-blue-100 dark:border-gray-700;
+}
+
+/* Transições suaves globais */
+* {
+  transition-property: background-color, border-color, color;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
