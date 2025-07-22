@@ -1,0 +1,129 @@
+<header class="bg-white shadow-sm border-b border-blue-100">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="flex justify-between items-center h-16">
+      
+      <!-- Logo -->
+      <div class="flex-shrink-0">
+        <img
+          [src]="logoSrc"
+          [alt]="logoAlt"
+          [ngClass]="sizeClass"
+          class="w-auto hover:opacity-80 transition-opacity"
+          (click)="handleHome()"
+        />
+      </div>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex space-x-8">
+        <a
+          href="#"
+          class="text-gray-700 px-3 py-2 text-sm font-normal transition-colors"
+          style="color: #6b7280"
+          onmouseover="this.style.color='#065fbe'"
+          onmouseout="this.style.color='#6b7280'"
+        >
+          Início Rápido
+        </a>
+        <a
+          href="#"
+          class="text-gray-700 px-3 py-2 text-sm font-normal transition-colors"
+          style="color: #6b7280"
+          onmouseover="this.style.color='#065fbe'"
+          onmouseout="this.style.color='#6b7280'"
+        >
+          Nossas Vagas
+        </a>
+        <a
+          href="#"
+          class="text-gray-700 px-3 py-2 text-sm font-normal transition-colors"
+          style="color: #6b7280"
+          onmouseover="this.style.color='#065fbe'"
+          onmouseout="this.style.color='#6b7280'"
+        >
+          Sobre Nós
+        </a>
+      </nav>
+
+      <!-- Desktop Login Button -->
+      <button
+        class="hidden md:block text-white px-6 py-2 rounded-lg font-normal transition-colors"
+        style="background-color: #065fbe"
+        onmouseover="this.style.backgroundColor='#0548a0'"
+        onmouseout="this.style.backgroundColor='#065fbe'"
+        (click)="handleLogin()"
+      >
+        Login
+      </button>
+
+      <!-- Mobile Menu Button -->
+      <button
+        (click)="toggleMenu()"
+        class="md:hidden text-gray-700 transition-colors"
+        style="color: #6b7280"
+        onmouseover="this.style.color='#065fbe'"
+        onmouseout="this.style.color='#6b7280'"
+      >
+        <lucide-icon
+          *ngIf="!isMenuOpen"
+          [img]="menuIcon"
+          class="w-6 h-6"
+        ></lucide-icon>
+        <lucide-icon
+          *ngIf="isMenuOpen"
+          [img]="closeIcon"
+          class="w-6 h-6"
+        ></lucide-icon>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div
+      class="md:hidden overflow-hidden transition-all duration-400 ease-in-out"
+      [ngClass]="{
+        'max-h-0 opacity-0': !isMenuOpen,
+        'max-h-96 opacity-100': isMenuOpen
+      }"
+    >
+      <nav class="py-4 space-y-2 border-t border-gray-100">
+        <a
+          href="#"
+          class="block px-3 py-2 text-gray-700 hover:bg-gray-50 rounded transition-colors"
+          style="color: #6b7280"
+          onmouseover="this.style.color='#065fbe'"
+          onmouseout="this.style.color='#6b7280'"
+        >
+          Início Rápido
+        </a>
+        <a
+          href="#"
+          class="block px-3 py-2 text-gray-700 hover:bg-gray-50 rounded transition-colors"
+          style="color: #6b7280"
+          onmouseover="this.style.color='#065fbe'"
+          onmouseout="this.style.color='#6b7280'"
+        >
+          Nossas Vagas
+        </a>
+        <a
+          href="#"
+          class="block px-3 py-2 text-gray-700 hover:bg-gray-50 rounded transition-colors"
+          style="color: #6b7280"
+          onmouseover="this.style.color='#065fbe'"
+          onmouseout="this.style.color='#6b7280'"
+        >
+          Sobre Nós
+        </a>
+
+        <!-- Mobile Login Button -->
+        <button
+          class="w-full mt-3 text-white px-4 py-2 rounded-lg font-normal transition-colors"
+          style="background-color: #065fbe"
+          onmouseover="this.style.backgroundColor='#0548a0'"
+          onmouseout="this.style.backgroundColor='#065fbe'"
+          (click)="handleLogin()"
+        >
+          Login
+        </button>
+      </nav>
+    </div>
+  </div>
+</header>
