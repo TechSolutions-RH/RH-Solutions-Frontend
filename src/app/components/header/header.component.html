@@ -1,4 +1,4 @@
-<header class="bg-white shadow-sm border-b border-blue-100">
+<header class="bg-white dark:bg-gray-900 shadow-sm border-b border-blue-100 dark:border-gray-700 transition-colors">
   <div class="max-w-7xl mx-auto px-4">
     <div class="flex justify-between items-center h-16">
       
@@ -8,7 +8,7 @@
           [src]="logoSrc"
           [alt]="logoAlt"
           [ngClass]="sizeClass"
-          class="w-auto hover:opacity-80 transition-opacity"
+          class="w-auto hover:opacity-80 transition-opacity cursor-pointer"
           (click)="handleHome()"
         />
       </div>
@@ -17,51 +17,42 @@
       <nav class="hidden md:flex space-x-8">
         <a
           href="#"
-          class="text-gray-700 px-3 py-2 text-sm font-normal transition-colors"
-          style="color: #6b7280"
-          onmouseover="this.style.color='#065fbe'"
-          onmouseout="this.style.color='#6b7280'"
+          class="text-gray-700 dark:text-gray-300 px-3 py-2 text-sm font-normal transition-colors hover:text-blue-600 dark:hover:text-blue-400"
         >
           Início Rápido
         </a>
         <a
           href="#"
-          class="text-gray-700 px-3 py-2 text-sm font-normal transition-colors"
-          style="color: #6b7280"
-          onmouseover="this.style.color='#065fbe'"
-          onmouseout="this.style.color='#6b7280'"
+          class="text-gray-700 dark:text-gray-300 px-3 py-2 text-sm font-normal transition-colors hover:text-blue-600 dark:hover:text-blue-400"
         >
           Nossas Vagas
         </a>
         <a
           href="#"
-          class="text-gray-700 px-3 py-2 text-sm font-normal transition-colors"
-          style="color: #6b7280"
-          onmouseover="this.style.color='#065fbe'"
-          onmouseout="this.style.color='#6b7280'"
+          class="text-gray-700 dark:text-gray-300 px-3 py-2 text-sm font-normal transition-colors hover:text-blue-600 dark:hover:text-blue-400"
         >
           Sobre Nós
         </a>
       </nav>
 
-      <!-- Desktop Login Button -->
-      <button
-        class="hidden md:block text-white px-6 py-2 rounded-lg font-normal transition-colors"
-        style="background-color: #065fbe"
-        onmouseover="this.style.backgroundColor='#0548a0'"
-        onmouseout="this.style.backgroundColor='#065fbe'"
-        (click)="handleLogin()"
-      >
-        Login
-      </button>
+      <!-- Desktop Actions -->
+      <div class="hidden md:flex items-center space-x-4">
+        <!-- Theme Toggle -->
+        <app-dark-mode-toggle></app-dark-mode-toggle> <!-- ← Corrigir selector -->
+        
+        <!-- Login Button -->
+        <button
+          class="text-white px-6 py-2 rounded-lg font-normal transition-colors bg-blue-600 hover:bg-blue-700"
+          (click)="handleLogin()"
+        >
+          Login
+        </button>
+      </div>
 
       <!-- Mobile Menu Button -->
       <button
         (click)="toggleMenu()"
-        class="md:hidden text-gray-700 transition-colors"
-        style="color: #6b7280"
-        onmouseover="this.style.color='#065fbe'"
-        onmouseout="this.style.color='#6b7280'"
+        class="md:hidden text-gray-700 dark:text-gray-300 transition-colors hover:text-gray-900 dark:hover:text-white"
       >
         <lucide-icon
           *ngIf="!isMenuOpen"
@@ -84,45 +75,37 @@
         'max-h-96 opacity-100': isMenuOpen
       }"
     >
-      <nav class="py-4 space-y-2 border-t border-gray-100">
+      <nav class="py-4 space-y-2 border-t border-gray-100 dark:border-gray-700">
         <a
           href="#"
-          class="block px-3 py-2 text-gray-700 hover:bg-gray-50 rounded transition-colors"
-          style="color: #6b7280"
-          onmouseover="this.style.color='#065fbe'"
-          onmouseout="this.style.color='#6b7280'"
+          class="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 rounded transition-colors"
         >
           Início Rápido
         </a>
         <a
           href="#"
-          class="block px-3 py-2 text-gray-700 hover:bg-gray-50 rounded transition-colors"
-          style="color: #6b7280"
-          onmouseover="this.style.color='#065fbe'"
-          onmouseout="this.style.color='#6b7280'"
+          class="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 rounded transition-colors"
         >
           Nossas Vagas
         </a>
         <a
           href="#"
-          class="block px-3 py-2 text-gray-700 hover:bg-gray-50 rounded transition-colors"
-          style="color: #6b7280"
-          onmouseover="this.style.color='#065fbe'"
-          onmouseout="this.style.color='#6b7280'"
+          class="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 rounded transition-colors"
         >
           Sobre Nós
         </a>
 
-        <!-- Mobile Login Button -->
-        <button
-          class="w-full mt-3 text-white px-4 py-2 rounded-lg font-normal transition-colors"
-          style="background-color: #065fbe"
-          onmouseover="this.style.backgroundColor='#0548a0'"
-          onmouseout="this.style.backgroundColor='#065fbe'"
-          (click)="handleLogin()"
-        >
-          Login
-        </button>
+        <!-- Mobile Actions -->
+        <div class="flex items-center justify-between pt-2 border-t border-gray-100 dark:border-gray-700 mt-2">
+          <app-dark-mode-toggle></app-dark-mode-toggle> <!-- ← Corrigir selector -->
+          
+          <button
+            class="flex-1 ml-4 text-white px-4 py-2 rounded-lg font-normal transition-colors bg-blue-600 hover:bg-blue-700"
+            (click)="handleLogin()"
+          >
+            Login
+          </button>
+        </div>
       </nav>
     </div>
   </div>

@@ -1,0 +1,11 @@
+<button 
+      (click)="toggleTheme()" 
+      class="p-3 rounded-lg transition-all duration-300 hover:bg-gray-200 dark:hover:bg-gray-700 border-2 border-transparent hover:border-gray-300 dark:hover:border-gray-600 flex items-center justify-center"
+      [title]="isDarkMode ? 'Ativar modo claro' : 'Ativar modo escuro'"
+      aria-label="Alternar tema"
+    >
+      <lucide-icon 
+        [img]="isDarkMode ? Sun : Moon" 
+        class="w-6 h-6 opacity-70"
+      ></lucide-icon>
+    </button>
