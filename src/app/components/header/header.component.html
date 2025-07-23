@@ -5,10 +5,9 @@
       <!-- Logo -->
       <div class="flex-shrink-0">
         <img
-          [src]="logoSrc"
-          [alt]="logoAlt"
-          [ngClass]="sizeClass"
-          class="w-auto hover:opacity-80 transition-opacity cursor-pointer"
+          src="assets/logoTS.png"
+          alt="LogoTechSolutions"
+          class="h-12 w-auto hover:opacity-80 transition-opacity cursor-pointer"
           (click)="handleHome()"
         />
       </div>
@@ -38,7 +37,7 @@
       <!-- Desktop Actions -->
       <div class="hidden md:flex items-center space-x-4">
         <!-- Theme Toggle -->
-        <app-dark-mode-toggle></app-dark-mode-toggle> <!-- ← Corrigir selector -->
+        <app-dark-mode-toggle></app-dark-mode-toggle> 
         
         <!-- Login Button -->
         <button
@@ -97,7 +96,7 @@
 
         <!-- Mobile Actions -->
         <div class="flex items-center justify-between pt-2 border-t border-gray-100 dark:border-gray-700 mt-2">
-          <app-dark-mode-toggle></app-dark-mode-toggle> <!-- ← Corrigir selector -->
+          <app-dark-mode-toggle></app-dark-mode-toggle> 
           
           <button
             class="flex-1 ml-4 text-white px-4 py-2 rounded-lg font-normal transition-colors bg-blue-600 hover:bg-blue-700"

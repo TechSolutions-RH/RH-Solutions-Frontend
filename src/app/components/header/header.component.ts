@@ -15,9 +15,6 @@ export class HeaderComponent {
   isMenuOpen = false;
   menuIcon = Menu;
   closeIcon = X;
-  @Input() logoSrc = 'assets/logoTS.png';
-  @Input() logoAlt = 'LogoTechSolutions';
-  @Input() size: 'sm' | 'md' | 'lg' = 'md';
 
   constructor(private router: Router) {}
 
@@ -31,14 +28,5 @@ export class HeaderComponent {
 
   handleHome() {
     this.router.navigate(['']);
-  }
-
-  get sizeClass() {
-    const sizes = {
-      sm: 'h-8',
-      md: 'h-12',
-      lg: 'h-16',
-    };
-    return sizes[this.size];
   }
 }
