@@ -1,0 +1,44 @@
+<section class="w-full bg-white dark:bg-gray-900 font-montserrat py-8 border-t border-gray-300 dark:border-gray-700">
+  <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-start justify-center px-4 md:px-8">
+    <!-- Formulário -->
+    <div class="flex-1 max-w-lg w-full md:mr-12 flex flex-col justify-center">
+      <span class="text-lg md:text-xl text-gray-900 dark:text-gray-100 font-light leading-tight mb-2">Contato</span>
+      <h2 class="text-4xl md:text-5xl font-normal text-gray-900 dark:text-white mb-6" style="font-family: 'Montserrat', Arial, sans-serif;">
+        Entre em contato
+      </h2>
+      <p class="text-base md:text-lg text-gray-800 dark:text-gray-200 mb-10">
+        Preencha o formulário abaixo para nos contatar.
+      </p>
+      <form class="space-y-6">
+        <div>
+          <label for="nome" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nome</label>
+          <input id="nome" type="text" class="w-full border-b border-gray-300 dark:border-gray-700 bg-transparent py-2 px-0 text-gray-900 dark:text-gray-100 focus:outline-none" />
+        </div>
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email</label>
+          <input id="email" type="email" class="w-full border-b border-gray-300 dark:border-gray-700 bg-transparent py-2 px-0 text-gray-900 dark:text-gray-100 focus:outline-none" />
+        </div>
+        <div>
+          <label for="mensagem" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Mensagem</label>
+          <textarea id="mensagem" rows="4" placeholder="Digite sua mensagem..." class="w-full border-b border-gray-300 dark:border-gray-700 bg-transparent py-2 px-0 text-gray-900 dark:text-gray-100 focus:outline-none"></textarea>
+        </div>
+        <button
+          type="submit"
+          class="text-white px-6 py-2 rounded-lg font-normal transition-colors bg-blue-600 hover:bg-blue-700"
+        >
+          Enviar
+        </button>
+      </form>
+    </div>
+    <!-- Imagem ao lado em telas md+ -->
+    <div class="hidden md:flex flex-1 mt-8 md:mt-0 items-center justify-center w-full">
+      <div class="w-90 h-125 bg-gray-200 dark:bg-gray-700 rounded-xl overflow-hidden flex items-center justify-center shadow">
+        <img
+          src="assets/contato.jpg"
+          alt="Pessoa usando celular"
+          class="object-cover w-full h-full"
+        />
+      </div>
+    </div>
+  </div>
+</section>

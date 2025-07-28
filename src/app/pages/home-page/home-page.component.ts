@@ -5,11 +5,12 @@ import { Section3Component } from '../../components/section3/section3.component'
 import { Section4Component } from '../../components/section4/section4.component';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { HeaderComponent } from '../../components/header/header.component';
+import { FormContatoComponent } from '../../components/form-contato/form-contato.component';
 
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [Section1Component, Section2Component, Section3Component, Section4Component, FooterComponent, HeaderComponent],
+  imports: [Section1Component, Section2Component, Section3Component, Section4Component, FooterComponent, HeaderComponent, FormContatoComponent],
   templateUrl: './home-page.component.html',
 })
 export class HomePageComponent {}
