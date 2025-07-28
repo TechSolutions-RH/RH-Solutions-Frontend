@@ -1,0 +1,38 @@
+<div class="min-h-screen flex flex-col md:flex-row">
+  <!-- Imagem de fundo acima do formulário no mobile -->
+  <div class="relative flex flex-col md:hidden items-center justify-center w-full h-65">
+    <img src="assets/imgSection1.png" alt="Imagem de fundo"
+      class="absolute inset-0 w-full h-full object-cover opacity-80 dark:opacity-60" />
+    <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-transparent"></div>
+  </div>
+  <div class="flex flex-1 flex-col justify-center items-center bg-white dark:bg-gray-900 px-8 w-full md:w-2/5">
+    <h1
+      class="text-2xl md:text-4xl font-light mb-8 text-gray-800 dark:text-gray-100"
+      style="font-family: 'Montserrat', Arial, sans-serif"
+    >
+      TechnologySolutions
+    </h1>
+    <form class="w-full max-w-xs space-y-4">
+      <div>
+        <label for="cpf" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">CPF</label>
+        <input id="cpf" type="text" autocomplete="username"
+          class="block w-full rounded-md border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 px-3 py-2 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      </div>
+      <div>
+        <label for="senha" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Senha</label>
+        <input id="senha" type="password" autocomplete="current-password"
+          class="block w-full rounded-md border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 px-3 py-2 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      </div>
+      <button type="submit"
+        class="w-full mt-4 py-2 px-4 rounded-md bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-colors">
+        Entrar
+      </button>
+    </form>
+  </div>
+  <!-- Lado Direito (imagem e logo sobreposta) só em telas md+ -->
+  <div class="relative hidden md:flex items-center justify-center bg-gray-100 dark:bg-gray-800 overflow-hidden w-full md:w-3/5">
+    <img src="assets/imgSection1.png" alt="Imagem de fundo" class="absolute inset-0 w-full h-full object-cover opacity-80 dark:opacity-60" />
+    <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-transparent"></div>
+    <img src="assets/logoTS.png" alt="Logo sobreposta" class="relative z-10 h-42 w-auto drop-shadow-xl" />
+  </div>
+</div>
