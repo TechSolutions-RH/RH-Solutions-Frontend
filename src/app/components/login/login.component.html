@@ -1,54 +1,87 @@
 <div class="min-h-screen flex flex-col md:flex-row">
   <div
-    class="flex flex-1 flex-col justify-center items-center bg-white dark:bg-gray-900 px-8 w-full md:w-2/5"
+    class="flex flex-1 flex-col bg-white dark:bg-gray-900 px-8 w-full md:w-2/5"
   >
-    <img
-      src="assets/logoTS.png"
-      alt="Logo"
-      class="h-14 w-auto mb-2 cursor-pointer"
-      (click)="handleHome()"
-    />
-    <h2
-      class="text-2xl font-normal mb-6 text-gray-800 dark:text-gray-100"
-      style="font-family: 'Montserrat', Arial, sans-serif"
-    >
-      TechnologySolutions
-    </h2>
-    <form class="w-full max-w-xs space-y-4">
-      <div>
-        <label
-          for="cpf"
-          class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-          >CPF</label
-        >
-        <input
-          id="cpf"
-          type="text"
-          autocomplete="username"
-          class="block w-full rounded-md border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 px-3 py-2 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-      </div>
-      <div>
-        <label
-          for="senha"
-          class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-          >Senha</label
-        >
-        <input
-          id="senha"
-          type="password"
-          autocomplete="current-password"
-          class="block w-full rounded-md border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 px-3 py-2 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-      </div>
+    <!-- Botão voltar no topo -->
+    <div class="flex justify-start pt-6 pb-4">
       <button
-        type="submit"
-        class="w-full mt-4 py-2 px-4 rounded-md bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-colors"
+        type="button"
+        (click)="handleHome()"
+        class="flex items-center space-x-2 text-gray-600 hover:text-gray-800 cursor-pointer"
       >
-        Entrar
+        <lucide-icon [img]="ArrowLeft" size="20"></lucide-icon>
+        <span>Voltar</span>
       </button>
-    </form>
+    </div>
+
+    <!-- Conteúdo centralizado -->
+    <div class="flex flex-1 flex-col justify-center items-center">
+      <img
+        src="assets/logoTS.png"
+        alt="Logo"
+        class="h-14 w-auto mb-2 cursor-pointer"
+      />
+      <h2
+        class="text-2xl font-normal mb-6 text-gray-800 dark:text-gray-100"
+        style="font-family: 'Montserrat', Arial, sans-serif"
+      >
+        TechnologySolutions
+      </h2>
+      <form class="w-full max-w-xs space-y-4" (ngSubmit)="onSubmit()">
+        <!-- Mensagem de erro -->
+        <div
+          *ngIf="errorMessage"
+          class="p-3 text-sm text-red-600 bg-red-100 border border-red-300 rounded-md"
+        >
+          {{ errorMessage }}
+        </div>
+
+        <div>
+          <label
+            for="cpf"
+            class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+            >CPF</label
+          >
+          <input
+            id="cpf"
+            type="text"
+            autocomplete="username"
+            class="block w-full rounded-md border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 px-3 py-2 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            [(ngModel)]="cpfValue"
+            name="cpf"
+            [disabled]="isLoading"
+          />
+        </div>
+
+        <div>
+          <label
+            for="senha"
+            class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+            >Senha</label
+          >
+          <input
+            id="senha"
+            type="password"
+            autocomplete="current-password"
+            class="block w-full rounded-md border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 px-3 py-2 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            [(ngModel)]="passwordValue"
+            name="senha"
+            [disabled]="isLoading"
+          />
+        </div>
+
+        <button
+          type="submit"
+          class="w-full mt-4 py-2 px-4 rounded-md bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          [disabled]="isLoading"
+        >
+          <span *ngIf="!isLoading">Entrar</span>
+          <span *ngIf="isLoading">Carregando...</span>
+        </button>
+      </form>
+    </div>
   </div>
+  
   <!-- Lado Direito (imagem e logo sobreposta) só em telas md+ -->
   <div
     class="relative hidden md:flex items-center justify-center bg-gray-100 dark:bg-gray-800 overflow-hidden w-full md:w-3/5"
