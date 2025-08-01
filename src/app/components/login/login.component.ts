@@ -44,7 +44,7 @@ export class LoginComponent {
         console.log('Login realizado com sucesso', response);
         localStorage.setItem('token', response.access_token);
         localStorage.setItem('user', JSON.stringify(response.user));
-        this.router.navigate(['']);
+        this.router.navigate(['admin']);
         this.isLoading = false;
       },
       error: (err) => {
