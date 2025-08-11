@@ -1,0 +1,63 @@
+<!-- Modal (inicialmente oculto - será controlado posteriormente) -->
+<div class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
+  <div class="relative top-20 mx-auto p-5 border w-full max-w-md shadow-lg rounded-md bg-white dark:bg-gray-800">
+    <!-- Header do Modal -->
+    <div class="flex items-center justify-between pb-4 border-b border-gray-200 dark:border-gray-700">
+      <h3 class="text-lg font-medium text-gray-900 dark:text-white">
+        Convidar Colaborador
+      </h3>
+      <button class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+        <lucide-icon [img]="X" class="w-6 h-6"></lucide-icon>
+      </button>
+    </div>
+
+    <!-- Conteúdo do Modal -->
+    <div class="py-6">
+      <form class="space-y-4">
+        <!-- Campo de Email -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            Email do Colaborador
+          </label>
+          <input
+            type="email"
+            placeholder="colaborador@email.com"
+            class="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+            required
+          />
+          <!-- Mensagem de erro (será controlada posteriormente) -->
+          <p class="mt-1 text-sm text-red-600 dark:text-red-400 hidden">
+            Por favor, insira um email válido
+          </p>
+        </div>
+
+        <!-- Informação sobre o convite -->
+        <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
+          <div class="flex items-start">
+            <lucide-icon [img]="Info" class="w-5 h-5 text-blue-500 mt-0.5 mr-2 flex-shrink-0"></lucide-icon>
+            <div>
+              <h4 class="text-sm font-medium text-blue-700 dark:text-blue-300 mb-1">
+                Sobre o convite
+              </h4>
+              <p class="text-sm text-blue-600 dark:text-blue-400">
+                O colaborador receberá um email com um link para finalizar o cadastro. O link expira em 24 horas.
+              </p>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Footer do Modal -->
+    <div class="flex items-center justify-end pt-4 border-t border-gray-200 dark:border-gray-700 space-x-3">
+      <button class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+        Cancelar
+      </button>
+      <button class="flex items-center space-x-2 px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+        <lucide-icon [img]="Mail" class="w-4 h-4"></lucide-icon>
+        <span>Enviar Convite</span>
+      </button>
+    </div>
+  </div>
+</div>
+
