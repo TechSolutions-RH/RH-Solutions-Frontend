@@ -1,26 +1,44 @@
-<!-- Modal (inicialmente oculto - será controlado posteriormente) -->
-<div class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
-  <div class="relative top-20 mx-auto p-5 border w-full max-w-2xl shadow-lg rounded-md bg-white dark:bg-gray-800">
+<!-- Modal com blur mais sutil -->
+<div 
+  [class]="isOpen ? 'fixed inset-0 bg-black/20 backdrop-blur-sm overflow-y-auto h-full w-full z-50' : 'hidden'"
+  (click)="closeModal()"
+>
+  <div 
+    class="relative top-8 mx-auto p-6 border border-white/20 w-full max-w-2xl shadow-2xl rounded-xl bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm mb-8"
+    (click)="$event.stopPropagation()"
+  >
     <!-- Header do Modal -->
-    <div class="flex items-center justify-between pb-4 border-b border-gray-200 dark:border-gray-700">
-      <h3 class="text-lg font-medium text-gray-900 dark:text-white">
-        Informações do Colaborador
-      </h3>
-      <button class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+    <div class="flex items-center justify-between pb-4 border-b border-gray-200/50 dark:border-gray-700/50">
+      <div>
+        <h3 class="text-lg font-medium text-gray-900 dark:text-white">
+          Editar Colaborador
+        </h3>
+        <!-- Badge de permissões -->
+        <span 
+          *ngIf="currentUserRole === 'hr'"
+          class="inline-flex items-center px-2 py-1 text-xs font-medium bg-blue-100/80 text-blue-800 dark:bg-blue-900/50 dark:text-blue-200 rounded-full mt-1 backdrop-blur-sm"
+        >
+          Acesso RH - Perfis limitados
+        </span>
+      </div>
+      <button 
+        (click)="closeModal()"
+        class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 p-2 rounded-full hover:bg-gray-100/50 dark:hover:bg-gray-700/50 transition-all"
+      >
         <lucide-icon [img]="X" class="w-6 h-6"></lucide-icon>
       </button>
     </div>
 
     <!-- Conteúdo do Modal -->
-    <div class="py-6 space-y-6">
+    <div class="py-6 space-y-6" *ngIf="colaborador">
       <!-- Seção: Informações Pessoais -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
             Nome
           </label>
-          <p class="text-sm text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-700 p-2 rounded">
-            Ana Silva Costa
+          <p class="text-sm text-gray-900 dark:text-white bg-gray-50/70 dark:bg-gray-700/50 p-3 rounded-lg backdrop-blur-sm border border-gray-200/30">
+            {{ colaborador.nome }}
           </p>
         </div>
         
@@ -28,8 +46,8 @@
           <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
             Email
           </label>
-          <p class="text-sm text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-700 p-2 rounded">
-            ana.silva&#64;empresa.com
+          <p class="text-sm text-gray-900 dark:text-white bg-gray-50/70 dark:bg-gray-700/50 p-3 rounded-lg backdrop-blur-sm border border-gray-200/30">
+            {{ colaborador.email }}
           </p>
         </div>
         
@@ -37,8 +55,8 @@
           <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
             CPF
           </label>
-          <p class="text-sm text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-700 p-2 rounded">
-            123.456.789-01
+          <p class="text-sm text-gray-900 dark:text-white bg-gray-50/70 dark:bg-gray-700/50 p-3 rounded-lg backdrop-blur-sm border border-gray-200/30">
+            {{ colaborador.cpf }}
           </p>
         </div>
         
@@ -46,32 +64,46 @@
           <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
             Telefone
           </label>
-          <p class="text-sm text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-700 p-2 rounded">
-            (11) 98765-4321
+          <p class="text-sm text-gray-900 dark:text-white bg-gray-50/70 dark:bg-gray-700/50 p-3 rounded-lg backdrop-blur-sm border border-gray-200/30">
+            {{ colaborador.telefone }}
+          </p>
+        </div>
+
+        <div class="md:col-span-2">
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            Endereço
+          </label>
+          <p class="text-sm text-gray-900 dark:text-white bg-gray-50/70 dark:bg-gray-700/50 p-3 rounded-lg backdrop-blur-sm border border-gray-200/30">
+            {{ colaborador.endereco }}
           </p>
         </div>
 
         <div>
           <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            Departamento
+            Status
           </label>
-          <p class="text-sm text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-700 p-2 rounded">
-            Recursos Humanos
-          </p>
+          <span 
+            class="inline-flex px-3 py-1 text-xs font-semibold rounded-full backdrop-blur-sm"
+            [ngClass]="colaborador.status === 'Ativo' 
+              ? 'bg-green-100/80 text-green-800 dark:bg-green-900/50 dark:text-green-200'
+              : 'bg-red-100/80 text-red-800 dark:bg-red-900/50 dark:text-red-200'"
+          >
+            {{ colaborador.status }}
+          </span>
         </div>
 
         <div>
           <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            Cargo
+            Data de Cadastro
           </label>
-          <p class="text-sm text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-700 p-2 rounded">
-            Analista de RH
+          <p class="text-sm text-gray-900 dark:text-white bg-gray-50/70 dark:bg-gray-700/50 p-3 rounded-lg backdrop-blur-sm border border-gray-200/30">
+            {{ colaborador.dataCadastro }}
           </p>
         </div>
       </div>
 
       <!-- Seção: Alteração de Perfil -->
-      <div class="border-t border-gray-200 dark:border-gray-700 pt-6">
+      <div class="border-t border-gray-200/30 dark:border-gray-700/30 pt-6">
         <h4 class="text-md font-medium text-gray-900 dark:text-white mb-4">
           Alterar Perfil do Colaborador
         </h4>
@@ -80,39 +112,73 @@
           <!-- Select de Perfil -->
           <div>
             <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              Perfil
+              Perfil Atual: <span class="font-semibold">{{ colaborador.perfil }}</span>
             </label>
-            <select class="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
-              <option>Administrador</option>
-              <option>Gente e Cultura</option>
-              <option selected>Colaborador Comum</option>
+            <select 
+              [(ngModel)]="selectedRole"
+              class="block w-full px-4 py-3 border border-gray-300/50 dark:border-gray-600/50 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white/70 dark:bg-gray-700/50 text-gray-900 dark:text-white backdrop-blur-sm"
+            >
+              <!-- Opções baseadas nas permissões -->
+              <option 
+                *ngFor="let role of getAvailableRoles()" 
+                [value]="role.value"
+                [disabled]="!role.canSelect"
+              >
+                {{ role.label }}{{ !role.canSelect ? ' (Sem permissão)' : '' }}
+              </option>
             </select>
           </div>
 
-          <!-- Campo de Senha (visível condicionalmente) -->
-          <div>
+          <!-- Campo de Senha -->
+          <div *ngIf="shouldShowPasswordField()">
             <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              Senha de Acesso
+              Nova Senha de Acesso *
             </label>
             <input
               type="password"
-              placeholder="Digite a senha para acesso ao sistema"
-              class="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              [(ngModel)]="password"
+              placeholder="Digite a nova senha para acesso ao sistema"
+              class="block w-full px-4 py-3 border border-gray-300/50 dark:border-gray-600/50 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white/70 dark:bg-gray-700/50 text-gray-900 dark:text-white backdrop-blur-sm"
+              required
             />
-            <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">
-              Necessário para perfis com acesso administrativo
+            <p class="mt-1 text-xs text-yellow-600 dark:text-yellow-400 bg-yellow-50/50 dark:bg-yellow-900/20 p-2 rounded backdrop-blur-sm">
+              ⚠️ Senha necessária para perfis com acesso administrativo
             </p>
+          </div>
+
+          <!-- Aviso sobre mudança de perfil -->
+          <div 
+            *ngIf="selectedRole !== colaborador.perfil" 
+            class="bg-yellow-50/70 dark:bg-yellow-900/30 border border-yellow-200/50 dark:border-yellow-800/50 rounded-lg p-3 backdrop-blur-sm"
+          >
+            <div class="flex">
+              <svg class="w-5 h-5 text-yellow-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+              </svg>
+              <div class="text-sm text-yellow-700 dark:text-yellow-200">
+                <strong>Alteração detectada:</strong><br>
+                De: <span class="font-medium bg-white/30 px-2 py-1 rounded">{{ colaborador.perfil }}</span><br>
+                Para: <span class="font-medium bg-blue-100/50 px-2 py-1 rounded">{{ selectedRole }}</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Footer do Modal -->
-    <div class="flex items-center justify-end pt-4 border-t border-gray-200 dark:border-gray-700 space-x-3">
-      <button class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+    <div class="flex items-center justify-end pt-4 border-t border-gray-200/30 dark:border-gray-700/30 space-x-3">
+      <button 
+        (click)="closeModal()"
+        class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white/50 dark:bg-gray-700/50 border border-gray-300/50 dark:border-gray-600/50 rounded-md hover:bg-gray-50/70 dark:hover:bg-gray-600/60 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 backdrop-blur-sm transition-all"
+      >
         Cancelar
       </button>
-      <button class="flex items-center space-x-2 px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+      <button 
+        (click)="saveChanges()"
+        [disabled]="!hasChanges() || (shouldShowPasswordField() && !password.trim())"
+        class="flex items-center space-x-2 px-4 py-2 text-sm font-medium text-white bg-blue-600/90 border border-transparent rounded-md hover:bg-blue-700/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed backdrop-blur-sm transition-all"
+      >
         <lucide-icon [img]="Save" class="w-4 h-4"></lucide-icon>
         <span>Salvar Alterações</span>
       </button>
